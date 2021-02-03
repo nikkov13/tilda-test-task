@@ -334,6 +334,11 @@ document.addEventListener("DOMContentLoaded", function() {
         dotTitle.classList.add('stages__point-text--active');
 
         wasCurrentDot = true;
+
+        if (document.documentElement.getBoundingClientRect().width <= 768) {
+          stagesWrapper.scrollLeft = dotPosition - progressBar.getBoundingClientRect().width / 4;
+        }
+
       }
 
       if (dot.dataset.name != stageName
