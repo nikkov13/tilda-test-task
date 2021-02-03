@@ -1,0 +1,110 @@
+.form
+  width: 100%
+
+.form__flex-wrapper
+  display: flex
+  flex-wrap: wrap
+
+  @media (max-width: 48em)
+    flex-direction: column
+
+.form__field
+  width: calc(50% - 3.1rem)
+  margin-right: 6.2rem
+  margin-bottom: 3.7rem
+  
+  &:nth-child(2n)
+    margin-right: 0
+
+  &--short
+    width: 20rem
+
+    &:nth-child(2n)
+      margin-right: 6.2rem
+
+  @media (max-width: 48em)
+    width: 100%
+    margin-right: 0
+    margin-bottom: 5.2rem
+
+    &--short
+      width: calc(33.3% - 0.8rem)
+      margin-right: 1.2rem
+
+      &:nth-child(2n)
+        margin-right: 1.2rem
+
+      &:last-child
+        margin-right: 0
+        
+.form__short-field-wrapper
+  display: flex
+
+.form__input
+  @include placeholder
+
+  width: 100%
+  min-height: 6.8rem
+  padding-left: 3rem
+  padding-right: 3rem
+  font-size: 2rem
+  border: none
+  border-radius: 0
+  border-bottom: 1px solid #bfbfbf
+  background-image: linear-gradient(180deg, rgba(251, 251, 251, 0) 0%, #FBFBFB 33.85%)
+  transition-property: border-color
+  transition-duration: 0.5s
+  transition-timing-function: ease-in-out
+
+  &:disabled
+    background-color: #ffffff
+
+  &:focus
+    border-color: #ff4a4a
+
+  @media (max-width: 48em)
+    min-height: 9.2rem
+    padding-left: 3.2rem
+    padding-right: 3.2rem
+    font-size: 3rem
+
+.form__switch
+  margin-bottom: 4rem
+
+  @media (max-width: 48em)
+    margin-bottom: 9.2rem
+
+.form__tab
+  transition-property: opacity
+  transition-duration: 0.5s
+  transition-timing-function: ease-in-out
+
+.form__textarea
+  @include placeholder
+
+  width: 100%
+  min-height: 13.6rem
+  margin-bottom: 3.7rem
+  padding: 2.4rem 3rem
+  font-size: 2rem
+  border: none
+  border-bottom: 1px solid #bfbfbf
+  background-image: linear-gradient(180deg, rgba(251, 251, 251, 0) 0%, #FBFBFB 33.85%)
+  resize: none
+  transition-property: border-color
+  transition-duration: 0.5s
+  transition-timing-function: ease-in-out
+
+  &:focus
+    border-color: #ff4a4a
+
+  @media (max-width: 48em)
+    font-size: 3rem
+    min-height: 27rem
+
+.form__select
+  position: relative
+  width: 56rem
+
+  @media (max-width: 48em)
+    width: 100%

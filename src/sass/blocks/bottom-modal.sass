@@ -1,0 +1,58 @@
+.bottom-modal
+  position: fixed
+  bottom: 0
+  left: 50%
+  transform: translateX(-50%)
+  // transform: translate(-50%, 100%)
+  width: 130rem
+  padding: 3rem 6rem
+  border-radius: 0.7rem
+  background-color: #ffffff
+  box-shadow: 0.3rem -0.6rem 5rem -0.8rem rgba(0, 0, 0, 0.08)
+  transition-property: transform
+  transition-duration: 0.7s
+
+  @media (max-width: 48em)
+    width: 100%
+    padding: 4rem 8rem
+
+.bottom-modal__header,
+.bottom-modal__footer
+  padding: 0 2rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+  @media (max-width: 48em)
+    padding: 0
+    flex-direction: column
+    align-items: flex-start
+
+.bottom-modal__header
+  margin-bottom: 3rem
+
+  @media (max-width: 48em)
+    margin-bottom: 6rem
+
+.bottom-modal__title
+  font-size: 3.2rem
+  font-weight: 500
+
+  @media (max-width: 48em)
+    margin-bottom: 3rem
+    font-size: 3.6rem
+
+.bottom-modal__footer
+  margin-top: 2rem
+
+  @media (max-width: 48em)
+    margin-top: 4.4rem
+
+.bottom-modal__total
+  font-size: 2rem
+  font-weight: 300
+  color: #787878
+
+  @media (max-width: 48em)
+    margin-bottom: 4.4rem
+    font-size: 2.6rem

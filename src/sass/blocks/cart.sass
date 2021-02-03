@@ -1,0 +1,95 @@
+.cart
+  position: relative
+  width: 130rem
+  margin: 0 auto
+  margin-top: 5rem
+  padding: 6rem
+  padding-top: 10rem
+  border-radius: 0.7rem
+  background-color: #ffffff
+  transition-property: opacity
+  transition-duration: 0.5s
+  transition-timing-function: ease-in-out
+
+  @media (max-width: 48em)
+    width: 100%
+    padding-top: 4.6rem
+    padding-bottom: 7.4rem
+    padding-left: 0
+    padding-right: 0
+
+.cart__stages
+  margin-bottom: 6rem
+
+  @media (max-width: 48em)
+    margin-bottom: 15.2rem
+
+.cart__tab
+  min-height: 50rem
+  transition-property: opacity
+  transition-duration: 0.5s
+  transition-timing-function: ease-in-out
+
+  @media (max-width: 48em)
+    min-height: unset
+    margin-bottom: 4.4rem
+    padding: 0 4rem
+
+.cart__item-list
+  height: 35rem
+  margin-bottom: 6rem
+  overflow-y: scroll
+
+  @media (max-width: 48em)
+    height: unset
+    overflow-y: visible
+
+.cart__item
+  margin-bottom: 2rem
+
+  &:last-child
+    margin-bottom: 0
+
+.cart__footer
+  padding: 0 1rem
+  display: flex
+  align-items: center
+  justify-content: space-around
+
+  @media (max-width: 48em)
+    padding: 0 4rem
+    flex-direction: column
+    align-items: flex-start
+
+.cart__total
+  margin-right: auto
+  font-size: 2.6rem
+  letter-spacing: 0.01em
+
+  &--sum
+    display: inline-block
+    margin-left: 1.5rem
+    font-weight: 700
+
+  &--old
+    margin-left: 0.5rem
+    font-size: 2rem
+    color: #bfbfbf
+    text-decoration: line-through
+
+  @media (max-width: 48em)
+    margin-bottom: 4rem
+    font-size: 4rem
+    letter-spacing: 0.03em
+
+.cart__btn-wrapper
+  display: flex
+
+.cart__back-link
+  margin-right: 5rem
+
+  @media (max-width: 48em)
+    position: absolute
+    top: 16rem
+    left: 4rem
+    line-height: 8rem
