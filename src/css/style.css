@@ -234,6 +234,49 @@ input[type=number] {
     background-color: rgba(191, 191, 191, 0.4);
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5); } }
 
+.cart-button {
+  position: fixed;
+  z-index: 10;
+  top: 7rem;
+  right: 7rem;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-color: #fbfbfb;
+  background-image: url(../img/icon-cart.svg);
+  background-repeat: no-repeat;
+  background-size: 3.2rem;
+  background-position: center;
+  box-shadow: -0.3rem 0.3rem 3.5rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out; }
+  .cart-button:hover {
+    opacity: 0.7; }
+  @media (max-width: 48em) {
+    .cart-button {
+      width: 10rem;
+      height: 10rem;
+      background-size: 4.5rem; } }
+
+.cart-button__count {
+  position: absolute;
+  bottom: -0.5rem;
+  right: 5rem;
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #ff4a4a;
+  border-radius: 2.4rem; }
+  @media (max-width: 48em) {
+    .cart-button__count {
+      right: 7rem;
+      padding: 1rem 1.7rem;
+      font-size: 2.2rem; } }
+
 .button {
   display: block;
   min-width: 20rem;
@@ -283,22 +326,41 @@ input[type=number] {
 
 .list {
   margin: 10rem 0;
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
+  @media (max-width: 48em) {
+    .list {
+      padding: 0 4rem; } }
 
 .list__item {
   width: calc(33.3% - 3rem);
   margin-right: 4.5rem; }
   .list__item:nth-child(3n) {
     margin-right: 0; }
+  @media (max-width: 48em) {
+    .list__item {
+      width: calc(50% - 1rem);
+      margin-right: 2rem;
+      margin-bottom: 8rem; }
+      .list__item:nth-child(3n) {
+        margin-right: 2rem; }
+      .list__item:nth-child(2n) {
+        margin-right: 0; } }
 
 .card__img {
   margin-bottom: 3rem; }
+  @media (max-width: 48em) {
+    .card__img {
+      margin-bottom: 4rem; } }
 
 .card__title {
   margin-bottom: 3rem;
   font-size: 2.4rem;
   font-weight: 700;
   text-align: center; }
+  @media (max-width: 48em) {
+    .card__title {
+      font-size: 3.6rem; } }
 
 .card__price {
   display: block;
@@ -309,15 +371,22 @@ input[type=number] {
     margin-left: 1rem;
     text-decoration: line-through;
     color: #bfbfbf; }
+  @media (max-width: 48em) {
+    .card__price {
+      font-size: 3.2rem; } }
 
 .card__button {
   width: 15rem;
   margin: 0 auto; }
+  @media (max-width: 48em) {
+    .card__button {
+      width: 80%; } }
 
 .dark-background {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
   width: 100vw;
   height: 100vh;
   padding-top: 5rem;
@@ -335,7 +404,7 @@ input[type=number] {
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 100%);
   width: 130rem;
   padding: 3rem 6rem;
   border-radius: 0.7rem;
@@ -557,6 +626,10 @@ input[type=number] {
   font-size: 1.8rem;
   font-weight: 500;
   color: red; }
+  @media (max-width: 48em) {
+    .cart-item__timer {
+      margin-right: auto;
+      font-size: 3rem; } }
 
 .cart-item__circle {
   position: absolute;
@@ -570,6 +643,9 @@ input[type=number] {
   margin-right: auto;
   font-size: 1.8rem;
   font-weight: 300; }
+  @media (max-width: 48em) {
+    .cart-item__delete-text {
+      display: none; } }
 
 .cart-item__delete-name {
   margin: 0 0.5rem;
@@ -585,6 +661,10 @@ input[type=number] {
   transition-property: all;
   transition-duration: 0.1s;
   transition-timing-function: ease-in-out; }
+  @media (max-width: 48em) {
+    .cart-item__return-item {
+      margin-right: 3rem;
+      font-size: 3rem; } }
   .cart-item__return-item:hover {
     color: #bfbfbf;
     border-color: #bfbfbf; }
@@ -992,6 +1072,7 @@ input[type="radio"]:checked + .switch__btn {
     opacity: 0.4; }
 
 .payment {
+  position: relative;
   padding: 0 1rem;
   display: flex;
   justify-content: space-between; }
@@ -1010,6 +1091,9 @@ input[type="radio"]:checked + .switch__btn {
       margin-bottom: 7.6rem;
       padding: 2.6rem 3.2rem;
       font-size: 3rem; } }
+
+.payment__subtotal-wrapper {
+  margin-top: auto; }
 
 .payment__subtotal {
   margin-bottom: 1.2rem;

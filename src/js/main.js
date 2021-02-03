@@ -6,10 +6,17 @@ document.addEventListener("DOMContentLoaded", function() {
       cardButtons = body.querySelectorAll('.card__button'),
       bottomModal = body.querySelector('.bottom-modal'),
       bottomModalClose = bottomModal.querySelector('.bottom-modal__link'),
+      cartButton = body.querySelector('.cart-button'),
+      itemCount = body.querySelectorAll('.js-count'),
       openCartButton = bottomModal.querySelector('.bottom-modal__button'),
       darkBackground = body.querySelector('.dark-background'),
       cartModal = darkBackground.querySelector('.cart'),
+      itemsOnCart = cartModal.querySelectorAll('.cart-item'),
       closeDelay;
+
+  itemCount.forEach((count) => {
+    count.textContent = itemsOnCart.length;
+  });
 
   cardButtons.forEach((button) => {
     button.addEventListener('click', (evt) => {
@@ -19,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       closeDelay= setTimeout(() => {
         closeBottomModal();
-      }, 10000);
+      }, 3000);
     });
   });
 
@@ -37,6 +44,14 @@ document.addEventListener("DOMContentLoaded", function() {
     closeBottomModal();
     openCart();
 
+    openTab('cart');
+    setActiveStage('cart');
+  });
+
+  cartButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+
+    openCart();
     openTab('cart');
     setActiveStage('cart');
   });
@@ -167,7 +182,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   deliveryTabBtns.forEach((button) => {
     button.addEventListener('click', (evt) => {
-      let tabName = button.id;
+      let tabName = button.id,
+          deliveryTotal = cartModal.querySelector('.js-delivery-sum');
+
+      if (tabName === 'pickup') {
+        deliveryTotal.textContent = 0;
+      }
+      
+      if (tabName === 'delivery') {
+        deliveryTotal.textContent = 1200;
+      }
 
       deliveryTabs.forEach((tab) => {
         if (tab.dataset.name === tabName) {
@@ -243,11 +267,13 @@ document.addEventListener("DOMContentLoaded", function() {
   function openBottomModal() {
     bottomModal.classList.add('js-open');
     bottomModal.style.transform = 'translate(-50%, 0)';
+    //traslate(-50%) for keep modal in center
   }
 
   function closeBottomModal() {
     bottomModal.classList.remove('js-open');
     bottomModal.style.transform = 'translate(-50%, 100%)';
+    //traslate(-50%) for keep modal in center
   }
 
   function openCart() {
@@ -342,6 +368,25 @@ document.addEventListener("DOMContentLoaded", function() {
           nextTabButton.style.margin = '0'
         }
 
+        if (tabs[i].dataset.name == 'payment') {
+          let minItemsList = tabs[i].querySelector('.product-list'),
+              minItems = minItemsList.querySelectorAll('.item-min');
+
+          minItems.forEach(item => item.remove());
+
+          itemsOnCart.forEach((item) => {
+            let minItemObj = getItemObject(item),
+                minItemNode = createMinItem(minItemObj);
+
+            minItemsList.append(minItemNode);
+          });
+
+          countTotalWithDelivery();
+
+        } else {
+          totalCounting();
+        }
+
         continue;
       }
       
@@ -371,11 +416,17 @@ document.addEventListener("DOMContentLoaded", function() {
         clearInterval(interval);
         item.remove();
         totalCounting();
+
+        itemCount.forEach((count) => {
+          itemsOnCart = cartModal.querySelectorAll('.cart-item');
+          count.textContent = itemsOnCart.length;
+        });
+
         return;
       }
 
       circleAnimation.style.strokeDashoffset = initialOffset-((currentTime+1)*(initialOffset/time));
-      currentTime++;  
+      currentTime++;
     }, 1000);
 
     let cancelButton = item.querySelector('.cart-item__return-item');
@@ -398,17 +449,30 @@ document.addEventListener("DOMContentLoaded", function() {
         itemTotal = parentItem.querySelector('.cart-item__price');
 
     itemTotal.textContent = input.value * itemPrice + ' р.';
-    
   }
 
   function totalCounting() {
     let cartTotal = cartModal.querySelector('.cart__total--sum'),
+        itemsSubtotal = cartModal.querySelector('.js-items-sum'),
+        bottomModalTotal = body.querySelector('.js-total'),
         itemsPrice = cartModal.querySelectorAll('.cart-item__price'),
         total = 0;
 
     itemsPrice.forEach((price) => {
       total += parseInt(price.textContent, 10);
     });
+
+    bottomModalTotal.textContent = total;
+    cartTotal.textContent = total + 'р.';
+    itemsSubtotal.textContent = total;
+  }
+
+  function countTotalWithDelivery() {
+    let cartTotal = cartModal.querySelector('.cart__total--sum'),
+        deliveryPrice = parseInt(cartModal.querySelector('.js-delivery-sum').textContent, 10),
+        itemsSubtotal = parseInt(cartModal.querySelector('.js-items-sum').textContent, 10);
+
+    let total = deliveryPrice + itemsSubtotal;
 
     cartTotal.textContent = total + 'р.';
   }
@@ -421,6 +485,44 @@ document.addEventListener("DOMContentLoaded", function() {
     if (counter.value > 1) {
       counter.value = +counter.value - 1;
     }
+  }
+
+  function getItemObject(itemNode) {
+    let itemObj = {};
+
+    let itemImg = itemNode.querySelector('img'),
+        itemTitle = itemNode.querySelector('.cart-item__name').textContent,
+        itemCount = itemNode.querySelector('.cart-item__counter-number').value,
+        itemPrice = itemNode.querySelector('.cart-item__price').textContent;
+
+    itemObj.imgPath = itemImg.getAttribute('src');
+    itemObj.title = itemTitle;
+    itemObj.count = itemCount;
+    itemObj.price = itemPrice;
+
+    return itemObj;
+  }
+
+  function createMinItem(itemObj) {
+    let newItem = document.createElement('li');
+
+    newItem.classList.add('product-list__item', 'item-min');
+    newItem.innerHTML = `
+      <div class="item-min__img-wrapper">
+        <img src="${itemObj.imgPath}" alt="">
+      </div>
+      <div class="item-min__content">
+        <p class="item-min__name">
+          ${itemObj.title}
+        </p>
+        <div class="item-min__price-wrapper">
+          <span class="item-min__count">${itemObj.count}</span>
+          <span class="item-min__price">${itemObj.price}</span>
+        </div>
+      </div>
+    `;
+
+    return newItem;
   }
 
 });

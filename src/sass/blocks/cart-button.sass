@@ -1,0 +1,43 @@
+.cart-button
+  position: fixed
+  z-index: 10
+  top: 7rem
+  right: 7rem
+  width: 7rem
+  height: 7rem
+  border-radius: 50%
+  background-color: #fbfbfb
+  background-image: url(../img/icon-cart.svg)
+  background-repeat: no-repeat
+  background-size: 3.2rem
+  background-position: center
+  box-shadow: -0.3rem 0.3rem 3.5rem rgba(#000000, 0.1)
+  cursor: pointer
+  transition-property: opacity
+  transition-duration: 0.1s
+  transition-timing-function: ease-in-out
+
+  &:hover
+    opacity: 0.7
+
+  @media (max-width: 48em)
+    width: 10rem
+    height: 10rem
+    background-size: 4.5rem
+
+.cart-button__count
+  position: absolute
+  bottom: -0.5rem
+  right: 5rem
+  display: block
+  padding: 0.5rem 1rem
+  font-size: 1.6rem
+  font-weight: 500
+  color: #ffffff
+  background-color: #ff4a4a
+  border-radius: 2.4rem
+
+  @media (max-width: 48em)
+    right: 7rem
+    padding: 1rem 1.7rem
+    font-size: 2.2rem

@@ -1,6 +1,10 @@
 .list
   margin: 10rem 0
   display: flex
+  flex-wrap: wrap
+
+  @media (max-width: 48em)
+    padding: 0 4rem
 
 .list__item
   width: calc(33.3% - 3rem)
@@ -8,3 +12,14 @@
 
   &:nth-child(3n)
     margin-right: 0
+
+  @media (max-width: 48em)
+    width: calc(50% - 1rem)
+    margin-right: 2rem
+    margin-bottom: 8rem
+
+    &:nth-child(3n)
+      margin-right: 2rem
+
+    &:nth-child(2n)
+      margin-right: 0
